@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('main');
-});
+// Controller
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Guest\TrainController;
+
+Route::get('/', [PageController::class, 'index'])->name('home');
+
+Route::get('/trains', [TrainController::class, 'index'])->name('trains.index_trains');
+

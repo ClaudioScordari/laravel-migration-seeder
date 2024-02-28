@@ -19,13 +19,13 @@ class TrainSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $train = new Train();
-            $train->company = fake()->words(rand(1, 3));
-            $train->departure_station = fake()->words(rand(1, 5));
-            $train->arrival_station = fake()->words(rand(1, 5));
+            $train->company = fake()->company();
+            $train->departure_station = fake()->city();
+            $train->arrival_station = fake()->city();
             $train->departure_time = fake()->time();
             $train->arrival_time = fake()->time();
-            $train->train_code = fake()->lexify();
-            $train->carriages_num = fake()->randomNumber();
+            $train->train_code = fake()->regexify('[A-Z0-9]{7}');
+            $train->carriages_num = rand(2, 10);
             $train->on_time = fake()->boolean();
             $train->deleted = fake()->boolean();
             $train->save();
